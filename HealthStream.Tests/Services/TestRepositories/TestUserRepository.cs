@@ -4,7 +4,7 @@ using System.Linq;
 using HealthStream.Data.Entities;
 using HealthStream.Data.Repositories;
 
-namespace HealthStream.Tests.TestRepositories
+namespace HealthStream.Tests.Services.TestRepositories
 {
     class TestUserRepository : IUserRepository
     {
@@ -12,19 +12,15 @@ namespace HealthStream.Tests.TestRepositories
 
         public TestUserRepository()
         {
-            var rand = new Random();
-            var baseUser = new User()
+            var baseUser = new User
             {
                 Username = "Malcolm",
                 EmailAddress = "maroberts@gmail.com",
                 CreatedOn = DateTime.UtcNow,
                 Id = 1,
                 FailedLoginAttempts = 0,
-                PasswordHash = new byte[32],
-                PasswordSalt = new byte[32]
+                PasswordHash = "test"
             };
-            rand.NextBytes(baseUser.PasswordSalt);
-            rand.NextBytes(baseUser.PasswordHash);
 
             _users = new List<User>
             {
@@ -54,13 +50,13 @@ namespace HealthStream.Tests.TestRepositories
             var user = Get(entity.Id);
             user.Username = entity.Username;
             user.EmailAddress = entity.EmailAddress;
-            user.PasswordSalt = entity.PasswordSalt;
             user.PasswordHash = entity.PasswordHash;
             user.ModifiedOn = DateTime.UtcNow;
         }
 
         public void Insert(User entity)
         {
+            entity.Id = _users.Max(u => u.Id) + 1;
             _users.Add(entity);
         }
 

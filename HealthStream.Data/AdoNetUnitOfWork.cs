@@ -3,7 +3,7 @@ using System.Data;
 
 namespace HealthStream.Data
 {
-    public class AdoNetUnitOfWork : IUnitOfWork
+    sealed public class AdoNetUnitOfWork : IUnitOfWork
     {
         private IDbConnection _connection;
         private IDbTransaction _transaction;

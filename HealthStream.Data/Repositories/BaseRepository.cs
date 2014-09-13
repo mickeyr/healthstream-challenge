@@ -1,13 +1,11 @@
-﻿using System.Data;
-
-namespace HealthStream.Data.Repositories
+﻿namespace HealthStream.Data.Repositories
 {
     public abstract class BaseRepository
     {
-        protected IUnitOfWork _unitOfWork;
+        protected IUnitOfWork UnitOfWork;
 
         protected BaseRepository(IUnitOfWork unitOfWork) {
-            _unitOfWork = unitOfWork;
+            UnitOfWork = unitOfWork;
         }
     }
 }

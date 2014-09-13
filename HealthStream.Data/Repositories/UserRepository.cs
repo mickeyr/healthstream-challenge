@@ -11,17 +11,12 @@ namespace HealthStream.Data.Repositories
     {
         public UserRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            CreateMappings();
-        }
-
-        private static void CreateMappings()
-        {
             AutoMapper.Mapper.CreateMap<IDataReader, User>();
         }
 
         public User Get(int id)
         {
-            using (var command = _unitOfWork.CreateCommand())
+            using (var command = UnitOfWork.CreateCommand())
             {
                 command.CommandText = "SELECT * FROM Users WHERE Id = @id";
                 command.AddParamaters(new
@@ -38,7 +33,7 @@ namespace HealthStream.Data.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            using (var command = _unitOfWork.CreateCommand())
+            using (var command = UnitOfWork.CreateCommand())
             {
                 command.CommandText = "SELECT * FROM Users";
                 using (var reader = command.ExecuteReader())
@@ -50,7 +45,7 @@ namespace HealthStream.Data.Repositories
 
         public void Delete(int id)
         {
-            using (var command = _unitOfWork.CreateCommand())
+            using (var command = UnitOfWork.CreateCommand())
             {
                 command.CommandText = "DELETE FROM Users WHERE Id = @id";
                 command.AddParamaters(new
@@ -64,12 +59,11 @@ namespace HealthStream.Data.Repositories
 
         public void Udate(User entity)
         {
-            using (var command = _unitOfWork.CreateCommand())
+            using (var command = UnitOfWork.CreateCommand())
             {
                 command.CommandText = @"UPDATE Users
                                             SET Username = @Username,
                                             EmailAddress = @EmailAddress, 
-                                            PasswordSalt = @PasswordSalt, 
                                             PasswordHash = @PasswordHash,
                                             ModifiedOn = GETUTCDATE()  
                                         WHERE Id = @id";
@@ -78,7 +72,6 @@ namespace HealthStream.Data.Repositories
                 {
                     Username = entity.Username,
                     EmailAddress = entity.EmailAddress,
-                    PasswordSalt = entity.PasswordSalt,
                     PasswordHash = entity.PasswordHash,
                     id = entity.Id
                 });
@@ -89,14 +82,13 @@ namespace HealthStream.Data.Repositories
 
         public void Insert(User entity)
         {
-            using (var command = _unitOfWork.CreateCommand())
+            using (var command = UnitOfWork.CreateCommand())
             {
-                command.CommandText = @"INSERT INTO Users(Username, EmailAddress, PasswordSalt, PasswordHash)  
-                                             VALUES(@Username, @EmailAddress, @PasswordSalt, @PasswordHash); SELECT @@IDENTITY AS Id;";
+                command.CommandText = @"INSERT INTO Users(Username, EmailAddress, PasswordHash)  
+                                             VALUES(@Username, @EmailAddress, @PasswordHash); SELECT @@IDENTITY AS Id;";
                 command.AddParamaters(new {
                     Username = entity.Username,
                     EmailAddress = entity.EmailAddress,
-                    PasswordSalt = entity.PasswordSalt,
                     PasswordHash = entity.PasswordHash
                 });
              
@@ -109,12 +101,12 @@ namespace HealthStream.Data.Repositories
 
         public void SaveChanges()
         {
-            _unitOfWork.SaveChanges();
+            UnitOfWork.SaveChanges();
         }
 
         public User GetByUsername(string username)
         {
-            using (var command = _unitOfWork.CreateCommand())
+            using (var command = UnitOfWork.CreateCommand())
             {
                 command.CommandText = "SELECT * FROM Users WHERE Username = @Username";
                 command.AddParamaters(new {

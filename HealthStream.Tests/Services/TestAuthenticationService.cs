@@ -1,6 +1,6 @@
 ﻿using System;
-using HealthStream.Services;
-using HealthStream.Tests.TestRepositories;
+using HealthStream.Services.Authentication;
+using HealthStream.Tests.Services.TestRepositories;
 using NUnit.Framework;
 
 namespace HealthStream.Tests.Services
@@ -63,6 +63,42 @@ namespace HealthStream.Tests.Services
             _authenticationService.RegisterUser("Mickey", "test", "mickey@mickeyr.com");
             var user = _authenticationService.GetUserByUsername("Mickey");
             Assert.IsNotNull(user);
+        }
+
+        [Test]
+        public void UserAuthenticationReturnsAuthenticationResponseObject()
+        {
+            var results = _authenticationService.AuthenticateUser("Mickey", "test");
+            Assert.IsInstanceOf<AuthenticationResponse>(results);
+        }
+
+        [Test]
+        public void CanAuthenticateRegisteredUser()
+        {
+            _authenticationService.RegisterUser("Mickey", "test", "mickey@mickeyr.com");
+            var user = _authenticationService.GetUserByUsername("Mickey");
+            Assert.IsNotNull(user, "Unable to insert new user");
+
+            var results = _authenticationService.AuthenticateUser("Mickey", "test");
+            Assert.AreEqual(AuthenticationResult.Success, results.Result);
+        }
+
+        [Test]
+        public void SuccessfulAuthenticationReturnsAToken()
+        {
+            _authenticationService.RegisterUser("Mickey", "test", "mickey@mickeyr.com");
+            var user = _authenticationService.GetUserByUsername("Mickey");
+            Assert.IsNotNull(user, "Unable to insert new user");
+
+            var results = _authenticationService.AuthenticateUser("Mickey", "test");
+            Assert.IsFalse(String.IsNullOrWhiteSpace(results.Token));
+        }
+
+        [Test]
+        public void TryingToAuthenticateUnregisteredUserReturnsInvalidUsernameOrPasswordResponse()
+        {
+            var results = _authenticationService.AuthenticateUser("Mickey", "test");
+            Assert.AreEqual(AuthenticationResult.InvalidUsernameOrPassword, results.Result);
         }
     }
 }
