@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[PasswordResetTokens]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [UserId] INT NOT NULL, 
+    [Token] NVARCHAR(10) NOT NULL, 
+    [IPAddress] NVARCHAR(15) NOT NULL, 
+    [CreatedOn] DATETIME NOT NULL DEFAULT GETUTCDATE()
+)
