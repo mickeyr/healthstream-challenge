@@ -19,6 +19,7 @@
     "jquery": "~2.1.1",
     "font-awesome": "~4.1.0",
     "angular": "~1.2.22",
-    "angular-route": "~1.2.22"
+    "angular-route": "~1.2.22",
+    "angular-mocks": "~1.2.x"
   }
 }

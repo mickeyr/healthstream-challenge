@@ -16,7 +16,7 @@ app.controller('loginController', [
     this.login = function () {
       authService.login(this.login_data).then(
         function (response) {
-          $location.path(settingsService.homepage);
+          $location.path(settingsService.homepage_route);
         },
         function (error) {
           console.log(error);

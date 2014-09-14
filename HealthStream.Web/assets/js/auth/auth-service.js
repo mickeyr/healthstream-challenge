@@ -17,7 +17,7 @@ app.factory('authService', [
     var _register = function (register_data) {
       var deferred = $q.defer();
       
-      $http.post(settingsService.base_url + 'authentication/register', register_data).success(function (response) {
+      $http.post(settingsService.base_url + '/authentication/register', register_data).success(function (response) {
         deferred.resolve(response);
       }).error(function (err, status) {
         deferred.reject(err);
@@ -28,7 +28,7 @@ app.factory('authService', [
     
     var _login = function (login_data) {
       var deferred = $q.defer();
-      $http.post(settingsService.base_url + 'authentication/authenticate', login_data).success(function (response) {
+      $http.post(settingsService.base_url + '/authentication/authenticate', login_data).success(function (response) {
         _authentication.username = login_data.username;
         _authentication.is_authenticated = true;
         _authentication.token = response;
