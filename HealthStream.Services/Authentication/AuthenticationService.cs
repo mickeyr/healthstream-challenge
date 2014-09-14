@@ -82,5 +82,15 @@ namespace HealthStream.Services.Authentication
 
             return response;
         }
+
+        public string ResetPasswordRequest(string emailAddress, string ipAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ResetPassword(string token, string ipAddress, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

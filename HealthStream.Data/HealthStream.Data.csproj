@@ -50,10 +50,12 @@
   <ItemGroup>
     <Compile Include="AdoNetUnitOfWork.cs" />
     <Compile Include="AdoNetUnitOfWorkFactory.cs" />
+    <Compile Include="Entities\PasswordResetToken.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Extensions\DbCommandExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\IUserTokenRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />

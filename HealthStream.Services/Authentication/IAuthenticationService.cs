@@ -8,5 +8,8 @@ namespace HealthStream.Services.Authentication
         bool IsUsernameAvailable(string username);
         User GetUserByUsername(string username);
         AuthenticationResponse AuthenticateUser(string username, string password);
+        string ResetPasswordRequest(string emailAddress, string ipAddress);
+        string ResetPassword(string token, string ipAddress, string newPassword);
+
     }
 }
