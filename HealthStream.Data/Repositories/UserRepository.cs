@@ -11,7 +11,6 @@ namespace HealthStream.Data.Repositories
     {
         public UserRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            AutoMapper.Mapper.CreateMap<IDataReader, User>();
         }
 
         public User Get(int id)
@@ -26,6 +25,7 @@ namespace HealthStream.Data.Repositories
 
                 using (var reader = command.ExecuteReader())
                 {
+                    AutoMapper.Mapper.CreateMap<IDataReader, User>();
                     return AutoMapper.Mapper.Map<IDataReader, IList<User>>(reader).SingleOrDefault();
                 }
             }
@@ -115,6 +115,7 @@ namespace HealthStream.Data.Repositories
 
                 using (var reader = command.ExecuteReader())
                 {
+                    AutoMapper.Mapper.CreateMap<IDataReader, User>();
                     return AutoMapper.Mapper.Map<IDataReader, IList<User>>(reader).SingleOrDefault();
                 }
             }

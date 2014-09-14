@@ -82,30 +82,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="assets\dist\healthstream-auth-challenge.js" />
+    <Content Include="assets\dist\healthstream-auth-challenge.min.js" />
+    <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\auth\auth-service.js" />
+    <Content Include="assets\js\auth\authroziation-event-handler.js" />
+    <Content Include="assets\js\auth\login\auth-login-controller.js" />
+    <Content Include="assets\js\auth\login\auth-login.html" />
+    <Content Include="assets\js\common\local-storage-service.js" />
+    <Content Include="assets\js\common\settings-service.js" />
+    <Content Include="assets\js\home\home-controller.js" />
+    <Content Include="assets\js\home\home.html" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="index.html" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".brackets.json" />
+    <Content Include="bower.json" />
+    <Content Include="package.json" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="assets\css\" />
+    <Folder Include="assets\img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

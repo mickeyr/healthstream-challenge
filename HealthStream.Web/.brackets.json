@@ -1,0 +1,8 @@
+{
+  "jslint.options": {
+    "nomen": true,
+    "vars": true
+  },
+  "spaceUnits": 2,
+  "useTabChar": false
+}
