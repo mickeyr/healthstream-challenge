@@ -19,7 +19,7 @@ The tiers are laid out as follows:
 * HealthStream.Web
   * Single page AngularJS app utilizing the WebAPI provided above.
   
-# Running the application from Visual Studio
+## Running the application from Visual Studio
 1. Deploy the HealthStream.Sql project to the database of your choice.  I'm using 
    localdb for development.  Be sure to update the Web.config file in the 
    HealthStream.Api project with connection string of your database.
