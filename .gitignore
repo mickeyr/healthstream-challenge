@@ -185,3 +185,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 assets/dist/*.js
+bower_components/
+node_modules/
+
